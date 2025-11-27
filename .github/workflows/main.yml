@@ -19,5 +19,7 @@ jobs:
           client-id: "e8c830a1-d750-4619-a0d0-822aa45f1086"
           tenant-id: "5c09c46b-8034-4002-8418-77ce48be97db"
           subscription-id: "b4461466-1e6b-4be2-bb70-1e96a72a41c8"
+      - name: acr login
+        run: az acr login --name todo007
       - name: push to acr
         run: docker push todo007.azurecr.io/todo-ui:v1
