@@ -1,0 +1,23 @@
+name: buildAndPush
+on:
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  buildAndPush:
+    name: build and push to acr
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.0      
+      - name: image build
+        run: docker build -t todo007.azurecr.io/todo-ui:v1 .
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: "e8c830a1-d750-4619-a0d0-822aa45f1086"
+          tenant-id: "5c09c46b-8034-4002-8418-77ce48be97db"
+          subscription-id: "b4461466-1e6b-4be2-bb70-1e96a72a41c8"
+      - name: push to acr
+        run: docker push todo007.azurecr.io/todo-ui:v1
