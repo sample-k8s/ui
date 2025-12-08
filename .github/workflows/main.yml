@@ -5,8 +5,8 @@ permissions:
   id-token: write
   contents: read
 env:
-  image_repo: heroacr007.azurecr.io/todo-ui
-  image_version: v1
+  image_repo: todo007.azurecr.io/todo-ui
+  image_version: v2
 jobs:
   buildAndPush:
     name: build and push to acr
@@ -23,6 +23,6 @@ jobs:
           tenant-id: "5c09c46b-8034-4002-8418-77ce48be97db"
           subscription-id: "b4461466-1e6b-4be2-bb70-1e96a72a41c8"
       - name: acr login
-        run: az acr login --name heroacr007
+        run: az acr login --name todo007
       - name: push to acr
         run: docker push $image_repo:$image_version
